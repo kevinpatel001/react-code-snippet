@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, {  useState } from "react"
 
 
 export default function TextForm2(props) {
@@ -7,7 +7,6 @@ export default function TextForm2(props) {
 
     const [darkTextBtn, setDarkTextBtn] = useState(" Enable Dark mode")
 
-
     const [myStyle, setMyStyle] = useState({
 
         color: 'black',
@@ -15,6 +14,26 @@ export default function TextForm2(props) {
         backgroundColor: 'white'
 
     })
+
+   
+    const countWord = (text) => {
+
+        let wordCount = 0;
+        let inWord = false;
+
+        for (let i = 0; i < text.length; i++) {
+            // Check if the character is not a space
+            if (text[i] !== ' ' && !inWord) {
+                inWord = true;
+                wordCount++;
+            } else if (text[i] === ' ') {
+                inWord = false;
+            }
+        }
+
+        return wordCount
+
+    }
 
     const buttonDarkMode = () => {
         if (myStyle.color === 'black') {
@@ -107,8 +126,7 @@ export default function TextForm2(props) {
             <div className="col-span-full pl-40 pr-40 pt-10 " style={myStyle} >
 
 
-
-                <p>{text.split(" ").length} Words and {text.length}  Characters</p>
+                <p>{countWord(text)} Words and {text.length}  Characters</p>
                 <br></br>
 
             </div>
